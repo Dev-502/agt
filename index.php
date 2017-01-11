@@ -210,7 +210,7 @@ $app->get('/uploads/{ftype}/{filename}', function ($request, $response, $args)
     $url = "/uploads/".$args['ftype']."/".$args['filename'];
     $image = getImage($url);
     ob_end_clean();
-    imagepng($image);
+    imagejpeg($image);
     exit;
 });
 
