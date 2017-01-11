@@ -50,7 +50,7 @@ function getImage($url){
             ));
             // return real page content for site
             $requestPage = json_decode($requestPage);
-            $image = imagecreatefromstring($requestPage->content);
+            $image = $requestPage->content;
             return $image;
         } else {
             // could not fetch clearance cookie

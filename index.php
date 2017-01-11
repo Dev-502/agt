@@ -209,8 +209,10 @@ $app->get('/uploads/{ftype}/{filename}', function ($request, $response, $args)
     header("Content-type:".$type);
     $url = "/uploads/".$args['ftype']."/".$args['filename'];
     $image = getImage($url);
-    ob_end_clean();
-    imagejpeg($image);
+    $response->write($image);
+    return $response;
+    //ob_end_clean();
+    //imagejpeg($image);
     exit;
 });
 
