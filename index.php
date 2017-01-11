@@ -165,11 +165,11 @@ $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
     $resdata['videoframe'] = $url2;
     $resurl = parse_url($url2)['query'];
     parse_str($resurl,$params_arr);
-//    $url2 = "/api/videos/".$params_arr['id']."/".$params_arr['ep_id']."/".$params_arr['anime']."/".$params_arr['episode'];
-    $url2  ="http://cproxy.io.gt/?id=".$params_arr['id']."&ep_id=".$params_arr['ep_id']."&anime=".$params_arr['anime']."&episode=".$params_arr['episode'];
+    $url2 = "/api/videos/".$params_arr['id']."/".$params_arr['ep_id']."/".$params_arr['anime']."/".$params_arr['episode'];
+    //$url2  ="http://cproxy.io.gt/?id=".$params_arr['id']."&ep_id=".$params_arr['ep_id']."&anime=".$params_arr['anime']."&episode=".$params_arr['episode'];
     //echo $url2;
-   echo $url2;exit;
-    $reshtml2 = getPage2($url2);
+   //echo $url2;exit;
+    $reshtml2 = getPage($url2);
     $dom2 = new Document($reshtml2);
     //$dom2->load($reshtml2);
     $resdata3 = $dom2->find('#divDownload a');
