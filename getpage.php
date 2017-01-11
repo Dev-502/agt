@@ -51,7 +51,6 @@ function getImage($url){
             ));
             // return real page content for site
             //$requestPage = json_decode($requestPage);
-            echo $requestPage;exit;
             $image = $requestPage->content;
             return $image;
         } else {
