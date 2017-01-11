@@ -35,6 +35,7 @@ function getImage($url){
     $httpProxyUA = 'proxyFactory';
 
     $requestLink = 'http://animeflv.me'.$url;
+    echo $requestLink;exit;
     $requestPage = json_decode($httpProxy->performRequest($requestLink));
 
 // if page is protected by cloudflare
@@ -46,12 +47,12 @@ function getImage($url){
         if($clearanceCookie = cloudflare::bypass($requestLink)) {
             // use clearance cookie to bypass page
             $requestPage = $httpProxy->performRequest($requestLink, 'GET', null, array(
-                'cookies' => $clearanceCookie,
+                'cookies' => $clearanceCookie
             ));
             // return real page content for site
             //$requestPage = json_decode($requestPage);
-            var_dump($requestPage);
-            exit;
+            //var_dump($requestPage);
+            //exit;
             //$image = $requestPage->content;
             //return $image;
         } else {
