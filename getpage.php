@@ -30,6 +30,36 @@ if($requestPage->status->http_code == 503) {
 	}	
 }}
 
+function getImage($url){
+    $httpProxy   = new httpProxy();
+    $httpProxyUA = 'proxyFactory';
+
+    $requestLink = 'http://animeflv.me'.$url;
+    $requestPage = json_decode($httpProxy->performRequest($requestLink));
+
+// if page is protected by cloudflare
+    if($requestPage->status->http_code == 503) {
+        // Make this the same user agent you use for other cURL requests in your app
+        cloudflare::useUserAgent($httpProxyUA);
+
+        // attempt to get clearance cookie
+        if($clearanceCookie = cloudflare::bypass($requestLink)) {
+            // use clearance cookie to bypass page
+            $requestPage = $httpProxy->performRequest($requestLink, 'GET', null, array(
+                'cookies' => $clearanceCookie
+            ));
+            // return real page content for site
+            $requestPage = json_decode($requestPage);
+            $image = imagecreatefromstring($requestPage->content);
+            return $image;
+        } else {
+            // could not fetch clearance cookie
+            return 'Could not fetch CloudFlare clearance cookie (most likely due to excessive requests)';
+        }
+    }
+}
+
+
 function postPage($url,$idu){
     $httpProxy   = new httpProxy();
     $httpProxyUA = 'proxyFactory';
@@ -66,32 +96,3 @@ function getPage2($url){
 	return $pagina_inicio;
 }
 
-function getImage($url){
-$httpProxy   = new httpProxy();
-$httpProxyUA = 'proxyFactory';
-
-$requestLink = 'http://animeflv.me'.$url;
-$requestPage = json_decode($httpProxy->performRequest($requestLink));
-
-// if page is protected by cloudflare
-if($requestPage->status->http_code == 503) {
-	// Make this the same user agent you use for other cURL requests in your app
-	cloudflare::useUserAgent($httpProxyUA);
-	
-	// attempt to get clearance cookie	
-	if($clearanceCookie = cloudflare::bypass($requestLink)) {
-		// use clearance cookie to bypass page
-		$requestPage = $httpProxy->performRequest($requestLink, 'GET', null, array(
-			'cookies' => $clearanceCookie
-		));
-		// return real page content for site
-		$requestPage = json_decode($requestPage);
-		return $requestPage->content;
-	} else {
-		// could not fetch clearance cookie
-		return 'Could not fetch CloudFlare clearance cookie (most likely due to excessive requests)';
-	}	
-}
-    return $requestPage->content;
-    
-}

@@ -205,19 +205,13 @@ $app->get('/videos/{id}/{vid}/{aurl}/{eurl}/', function ($request, $response, $a
 
 $app->get('/uploads/{ftype}/{filename}', function ($request, $response, $args)
 {
-  //$cloudflare = new \Stack\Bypass\CloudFlare("http://animeflv.me", [true, "faggot.txt"]);
-  $url = "/uploads/".$args['ftype']."/".$args['filename'];
-  $data = base64_encode(getImage($url));
-  //$type = "image/jpg";
-  //header("Content-type:".$type);
-  //echo data;
-
-$imageSave = imagejpeg($rotated_img, $file, 10);
-
-imagedestroy($source_img);
-  //$resdata = '<img src="data:image/gif;base64,' . $resdata . '" />';
-  //$response->write($resdata);
-  //return $response;
+    $type = "image/jpg";
+    header("Content-type:".$type);
+    $url = "/uploads/".$args['ftype']."/".$args['filename'];
+    $image = getImage($url);
+    ob_end_clean();
+    imagepng($image);
+    exit;
 });
 
 $app->get('/hello/{name}', function ($request, $response, $args) {
