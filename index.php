@@ -26,7 +26,7 @@ header("Content-Type: application/json");
 require 'vendor/autoload.php';
 
 // Include the library..
-require_once "../getpage.php";
+require_once "getpage.php";
 
 use DiDom\Document;
 
