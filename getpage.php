@@ -19,12 +19,10 @@ if($requestPage->status->http_code == 503) {
 	if($clearanceCookie = cloudflare::bypass($requestLink)) {
 		// use clearance cookie to bypass page
 		$requestPage = $httpProxy->performRequest($requestLink, 'GET', null, array(
-			'cookies' => $clearanceCookie,
-            'mode' => 'native'
+			'cookies' => $clearanceCookie
 		));
 		// return real page content for site
-		//$requestPage = json_decode($requestPage);
-        echo $requestPage;
+		$requestPage = json_decode($requestPage);
 		return $requestPage->content;
 	} else {
 		// could not fetch clearance cookie
@@ -48,10 +46,12 @@ function getImage($url){
         if($clearanceCookie = cloudflare::bypass($requestLink)) {
             // use clearance cookie to bypass page
             $requestPage = $httpProxy->performRequest($requestLink, 'GET', null, array(
-                'cookies' => $clearanceCookie
+                'cookies' => $clearanceCookie,
+                'mode' => 'native'
             ));
             // return real page content for site
-            $requestPage = json_decode($requestPage);
+            //$requestPage = json_decode($requestPage);
+            echo $requestPage;exit;
             $image = $requestPage->content;
             return $image;
         } else {
