@@ -205,8 +205,6 @@ $app->get('/videos/{id}/{vid}/{aurl}/{eurl}/', function ($request, $response, $a
 
 $app->get('/uploads/{ftype}/{filename}', function ($request, $response, $args)
 {
-    $type = "image/jpg";
-    header("Content-type:".$type);
     $url = "/uploads/".$args['ftype']."/".$args['filename'];
     $image = getImage($url);
     //$response->write($image);
