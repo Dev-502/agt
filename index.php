@@ -169,7 +169,10 @@ $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
     //$url2  ="http://cproxy.io.gt/?id=".$params_arr['id']."&ep_id=".$params_arr['ep_id']."&anime=".$params_arr['anime']."&episode=".$params_arr['episode'];
     //echo $url2;
    //echo $url2;exit;
-    $reshtml2 = getPage($url2);
+    //$reshtml2 = getPage($url2);
+    $url2="http://player.animeflv.me//blocks/getdownload.php";
+    $reshtml2 = postPage($url2,$params_arr['id']);
+    echo $reshtml2;exit;
     $dom2 = new Document($reshtml2);
     //$dom2->load($reshtml2);
     $resdata3 = $dom2->find('#divDownload a');
