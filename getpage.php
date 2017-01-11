@@ -51,8 +51,10 @@ function getImage($url){
             ));
             // return real page content for site
             //$requestPage = json_decode($requestPage);
-            $image = $requestPage->content;
-            return $image;
+            var_dump($requestPage);
+            exit;
+            //$image = $requestPage->content;
+            //return $image;
         } else {
             // could not fetch clearance cookie
             return 'Could not fetch CloudFlare clearance cookie (most likely due to excessive requests)';
