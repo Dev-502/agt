@@ -49,6 +49,7 @@ function getImage($url){
             // use clearance cookie to bypass page
             $requestPage = $httpProxy->performRequest($requestLink, 'GET', null, array(
                 'cookies' => $clearanceCookie,
+                'mode' => 'native'
             ));
             // return real page content for site
             //$requestPage = json_decode($requestPage);
