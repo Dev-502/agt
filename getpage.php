@@ -7,7 +7,8 @@ function getPage($url){
 $httpProxy   = new httpProxy();
 $httpProxyUA = 'proxyFactory';
 
-$requestLink = 'http://animeflv.me'.$url;
+
+    $requestLink = 'http://animeflv.me'.$url;
 $requestPage = json_decode($httpProxy->performRequest($requestLink));
 
 // if page is protected by cloudflare
@@ -33,6 +34,7 @@ if($requestPage->status->http_code == 503) {
 function getImage($url){
     $httpProxy   = new httpProxy();
     $httpProxyUA = 'proxyFactory';
+    $httpProxy->global__enableNative();
 
     $requestLink = 'http://animeflv.me'.$url;
     $requestPage = json_decode($httpProxy->performRequest($requestLink));
