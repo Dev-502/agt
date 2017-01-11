@@ -172,10 +172,10 @@ $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
     //$reshtml2 = getPage($url2);
     $url2="http://player.animeflv.me//blocks/getdownload.php";
     $reshtml2 = postPage($url2,$params_arr['id']);
-    echo $reshtml2;exit;
+    //echo $reshtml2;exit;
     $dom2 = new Document($reshtml2);
     //$dom2->load($reshtml2);
-    $resdata3 = $dom2->find('#divDownload a');
+    $resdata3 = $dom2->find('a');
     $gvideos = array();
     foreach($resdata3 as $itemdata)
     {
