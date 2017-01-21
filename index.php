@@ -61,7 +61,7 @@ $app->get('/search/{query}', function($request, $response,$ars){
         $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
       $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
       $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
-      array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'episode_title'=>$links[1]->text(),'episode_url'=>$episodeurl,'img'=>$aimg]);
+      array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'episode_title'=>$links[1]->text(),'episode_url'=>$episodeurl,'img'=>$aimg, 'gurl'=>$url]);
     }
 
   }
