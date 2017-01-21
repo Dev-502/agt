@@ -40,6 +40,34 @@ $app->get('/test', function ($request, $response, $args)
   return $response;
 });
 
+$app->get('/search/{query}', function($request, $response,$ars){
+  $query = $args['query'];
+  $resdata = [];
+  $url="/Buscar/?s=".$query;
+  $reshtml = getPage($url);
+  $dom = new Document($reshtml);
+  $elementos = $dom->find('tr');
+  foreach ($elementos as $key => $elemento) {
+    # code...
+    $tmp = new Document($elemento->html());
+    $tds = $tmp->find('td');
+    $links = $tmp->find('a');
+    $tmp_arr = array();
+    if(count($links)>=2){
+      $tds_img = $tds[0]->title;
+      $tmp_img = new Document($tds_img);
+      $aimg = $tmp_img->find('img')[0]->src;
+      //$aimg = str_replace("http://animeflv.me","api",$tmp_img->find('img')[0]->src);
+        $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
+      $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
+      $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
+      array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'episode_title'=>$links[1]->text(),'episode_url'=>$episodeurl,'img'=>$aimg]);
+    }
+
+  }
+  return $response;
+});
+
 $app->get('/new', function ($request, $response, $args)
 {
   $resdata = [];
@@ -146,7 +174,7 @@ $app->get('/Anime/{aid}/{aurl}/', function ($request, $response, $args)
             $resdata['capitulos'][$count]['title']= $links[0]->text();
             $count ++;
         }
-        
+
     }
   $response->write(json_encode($resdata));
   return $response;
@@ -156,7 +184,7 @@ $app->get('/Anime/{aid}/{aurl}/', function ($request, $response, $args)
 
 
 
-$app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args) 
+$app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
 {
     $resdata = [];
     $url = "/Ver/".$args['vid']."/".$args['aurl']."/".$args['eurl'];
@@ -188,7 +216,7 @@ $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
   return $response;
 });
 
-$app->get('/videos/{id}/{vid}/{aurl}/{eurl}/', function ($request, $response, $args) 
+$app->get('/videos/{id}/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
 {
     $resdata = [];
     $url = "http://api.animeflv.me/?id=".$args['id']."&ep_id=".$args['vid']."&anime=".$args['aurl']."&episode=".$args['eurl'];
