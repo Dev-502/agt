@@ -100,7 +100,7 @@ $app->get('/genere/{query}/{page}', function($request, $response,$args){
 
     //print_r($links);
     $tmp_arr = array();
-    if(count($links)>0){
+    if(count($links)>0 and !empty($aimg)){
       $animeurl =  $links[0]->href;
       //replace data
       $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
