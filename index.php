@@ -40,34 +40,83 @@ $app->get('/test', function ($request, $response, $args)
   return $response;
 });
 
-$app->get('/search/{query}', function($request, $response,$ars){
+$app->get('/search/{query}', function($request, $response,$args){
   $query = $args['query'];
   $resdata = [];
   $url="/Buscar/?s=".$query;
   $reshtml = getPage($url);
   $dom = new Document($reshtml);
-  $elementos = $dom->find('tr');
+  $elementos = $dom->find('td');
   foreach ($elementos as $key => $elemento) {
+    $elemento_html= urldecode(htmlspecialchars_decode ($elemento->html()));
     # code...
     $tmp = new Document($elemento->html());
-    $tds = $tmp->find('td');
+
+    $pattern = '~(http.*\.)(jpe?g|png|[tg]iff?|svg)~i';
+
+    $m = preg_match_all($pattern,$elemento_html,$matches);
+
+    $aimg = $matches[0][0];
+
     $links = $tmp->find('a');
+    //print_r($links);
     $tmp_arr = array();
-    if(count($links)>=2){
-      $tds_img = $tds[0]->title;
-      $tmp_img = new Document($tds_img);
-      $aimg = $tmp_img->find('img')[0]->src;
-      //$aimg = str_replace("http://animeflv.me","api",$tmp_img->find('img')[0]->src);
-        $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
+    if(count($links)>0){
+      $animeurl =  $links[0]->href;
+      //replace data
+      $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
       $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
       $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
-      array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'episode_title'=>$links[1]->text(),'episode_url'=>$episodeurl,'img'=>$aimg, 'gurl'=>$url]);
+      array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'img'=>$aimg]);
     }
 
   }
   $response->write(json_encode($resdata));
   return $response;
 });
+
+
+$app->get('/genere/{query}/{page}', function($request, $response,$args){
+  $query = $args['query'];
+  $page = (int)$args['page'];
+  $resdata = [];
+  $resanime = [];
+  $url="/genero/".$query."?page=".$page;
+  $reshtml = getPage($url);
+  $dom = new Document($reshtml);
+  $elementos = $dom->find('td');
+  foreach ($elementos as $key => $elemento) {
+    $elemento_html= urldecode(htmlspecialchars_decode ($elemento->html()));
+    # code...
+    $tmp = new Document($elemento->html());
+
+    $pattern = '~(http.*\.)(jpe?g|png|[tg]iff?|svg)~i';
+
+    $m = preg_match_all($pattern,$elemento_html,$matches);
+
+    $aimg = $matches[0][0];
+
+    $links = $tmp->find('a');
+
+    //print_r($links);
+    $tmp_arr = array();
+    if(count($links)>0){
+      $animeurl =  $links[0]->href;
+      //replace data
+      $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
+      $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
+      $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
+      array_push($resanime, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'img'=>$aimg]);
+    }
+
+  }
+  $resdata['results']= $resanime;
+  $resdata['page']= $page;
+  //$resdata['last'] = 20;
+  $response->write(json_encode($resdata));
+  return $response;
+});
+
 
 $app->get('/new', function ($request, $response, $args)
 {
