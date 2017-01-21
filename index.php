@@ -65,6 +65,7 @@ $app->get('/search/{query}', function($request, $response,$ars){
     }
 
   }
+  $response->write(json_encode($resdata));
   return $response;
 });
 
