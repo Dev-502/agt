@@ -122,7 +122,7 @@ $app->get('/new', function ($request, $response, $args)
 {
   $resdata = [];
   //$dom = new Dom;
-  $url = "/ListadeAnime/NuevoYCaliente";
+  $url = "/ListadeAnime/LatestUpdate";
   $reshtml = getPage($url);
   //$dom->load($reshtml);
   $dom = new Document($reshtml);
