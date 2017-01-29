@@ -43,6 +43,7 @@ $app->get('/test', function ($request, $response, $args)
 $app->get('/search/{query}', function($request, $response,$args){
   $query = $args['query'];
   $resdata = [];
+  $query = str_replace(" ","+",$query);
   $url="/Buscar/?s=".$query;
   $reshtml = getPage($url);
   $dom = new Document($reshtml);
