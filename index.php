@@ -63,7 +63,7 @@ $app->get('/search/{query}', function($request, $response,$args){
     if(count($links)>0 and !empty($aimg)){
       $animeurl =  $links[0]->href;
       //replace data
-      $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
+      $aimg = str_replace("http://animeflv.me/","https://api.animegt.net/",$aimg);
       $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
       $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
       array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'img'=>$aimg]);
@@ -102,7 +102,7 @@ $app->get('/genere/{query}/{page}', function($request, $response,$args){
     if(count($links)>0 and !empty($aimg)){
       $animeurl =  $links[0]->href;
       //replace data
-      $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
+      $aimg = str_replace("http://animeflv.me/","https://api.animegt.net/",$aimg);
       $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
       $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
       array_push($resanime, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'img'=>$aimg]);
@@ -138,7 +138,7 @@ $app->get('/new', function ($request, $response, $args)
       $tmp_img = new Document($tds_img);
       $aimg = $tmp_img->find('img')[0]->src;
       //$aimg = str_replace("http://animeflv.me","api",$tmp_img->find('img')[0]->src);
-        $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
+        $aimg = str_replace("http://animeflv.me/","https://api.animegt.net/",$aimg);
       $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
       $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
       array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'episode_title'=>$links[1]->text(),'episode_url'=>$episodeurl,'img'=>$aimg]);
@@ -171,7 +171,7 @@ $app->get('/popular', function ($request, $response, $args)
       $tds_img = $tds[0]->title;
       $tmp_img = new Document($tds_img);
       $aimg = $tmp_img->find('img')[0]->src;
-      $aimg = str_replace("http://animeflv.me/","http://api.animegt.net/",$aimg);
+      $aimg = str_replace("http://animeflv.me/","https://api.animegt.net/",$aimg);
       $animeurl = str_replace("http://animeflv.me","",$links[0]->href);
       $episodeurl = str_replace("http://animeflv.me","",$links[1]->href);
       array_push($resdata, ['anime_title'=>$links[0]->text(), 'anime_url'=>$animeurl,'episode_title'=>$links[1]->text(),'episode_url'=>$episodeurl,'img'=>$aimg]);
@@ -209,7 +209,7 @@ $app->get('/Anime/{aid}/{aurl}/', function ($request, $response, $args)
     	$resdata['img']= $itimg->src;
     	break;
     }
-    $resdata['img'] = str_replace("http://animeflv.me/","http://api.animegt.net/",$resdata['img']);
+    $resdata['img'] = str_replace("http://animeflv.me/","https://api.animegt.net/",$resdata['img']);
     $capitulos = $dom->find('tr');
     $count = 0;
     foreach($capitulos as $key => $capitulo)
@@ -268,7 +268,7 @@ $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
 $app->get('/videos/{id}/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
 {
     $resdata = [];
-    $url = "http://api.animeflv.me/?id=".$args['id']."&ep_id=".$args['vid']."&anime=".$args['aurl']."&episode=".$args['eurl'];
+    $url = "https://api.animeflv.me/?id=".$args['id']."&ep_id=".$args['vid']."&anime=".$args['aurl']."&episode=".$args['eurl'];
     $reshtml = getPage2 ($url);
     $dom = new Document($reshtml);
     echo $reshtml;
