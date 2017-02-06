@@ -15,10 +15,10 @@ CREATE TABLE `videos`
     `eid` VARCHAR(50) NOT NULL,
     `url` VARCHAR(200) NOT NULL,
     `episode` VARCHAR(100) NOT NULL,
-    `360` TEXT NOT NULL,
-    `480` TEXT NOT NULL,
-    `720` TEXT NOT NULL,
-    `1080` TEXT NOT NULL,
+    `q360` TEXT NOT NULL,
+    `q480` TEXT NOT NULL,
+    `q720` TEXT NOT NULL,
+    `q1080` TEXT NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 

@@ -15,7 +15,7 @@ class ComposerStaticInit99480cef6474b1c82f5968bd42177c50
     );
 
     public static $prefixLengthsPsr4 = array (
-        'S' => 
+        'S' =>
         array (
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
@@ -28,129 +28,137 @@ class ComposerStaticInit99480cef6474b1c82f5968bd42177c50
             'Symfony\\Component\\Config\\' => 25,
             'Slim\\' => 5,
         ),
-        'P' => 
+        'P' =>
         array (
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
         ),
-        'I' => 
+        'I' =>
         array (
             'Interop\\Container\\' => 18,
         ),
-        'G' => 
+        'G' =>
         array (
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
-        'F' => 
+        'F' =>
         array (
             'FastRoute\\' => 10,
         ),
-        'D' => 
+        'D' =>
         array (
             'DiDom\\' => 6,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Polyfill\\Mbstring\\' => 
+        'Symfony\\Polyfill\\Mbstring\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Symfony\\Component\\Yaml\\' => 
+        'Symfony\\Component\\Yaml\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
         ),
-        'Symfony\\Component\\Validator\\' => 
+        'Symfony\\Component\\Validator\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/validator',
         ),
-        'Symfony\\Component\\Translation\\' => 
+        'Symfony\\Component\\Translation\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
         ),
-        'Symfony\\Component\\Finder\\' => 
+        'Symfony\\Component\\Finder\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/finder',
         ),
-        'Symfony\\Component\\Filesystem\\' => 
+        'Symfony\\Component\\Filesystem\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/filesystem',
         ),
-        'Symfony\\Component\\Debug\\' => 
+        'Symfony\\Component\\Debug\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/debug',
         ),
-        'Symfony\\Component\\Console\\' => 
+        'Symfony\\Component\\Console\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
-        'Symfony\\Component\\Config\\' => 
+        'Symfony\\Component\\Config\\' =>
         array (
             0 => __DIR__ . '/..' . '/symfony/config',
         ),
-        'Slim\\' => 
+        'Slim\\' =>
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
         ),
-        'Psr\\Log\\' => 
+        'Psr\\Log\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'Psr\\Http\\Message\\' => 
+        'Psr\\Http\\Message\\' =>
         array (
             0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'Interop\\Container\\' => 
+        'Interop\\Container\\' =>
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
         ),
-        'GuzzleHttp\\Psr7\\' => 
+        'GuzzleHttp\\Psr7\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'GuzzleHttp\\Promise\\' => 
+        'GuzzleHttp\\Promise\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
         ),
-        'GuzzleHttp\\' => 
+        'GuzzleHttp\\' =>
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
-        'FastRoute\\' => 
+        'FastRoute\\' =>
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
         ),
-        'DiDom\\' => 
+        'DiDom\\' =>
         array (
             0 => __DIR__ . '/..' . '/imangazaliev/didom/src/DiDom',
         ),
     );
 
     public static $prefixesPsr0 = array (
-        's' => 
+        's' =>
         array (
-            'stringEncode' => 
+            'stringEncode' =>
             array (
                 0 => __DIR__ . '/..' . '/paquettg/string-encode/src',
             ),
         ),
-        'P' => 
+        'P' =>
         array (
-            'Propel' => 
+            'Propel' =>
             array (
                 0 => __DIR__ . '/..' . '/propel/propel/src',
             ),
-            'Pimple' => 
+            'Pimple' =>
             array (
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
             ),
-            'PHPHtmlParser' => 
+            'PHPHtmlParser' =>
             array (
                 0 => __DIR__ . '/..' . '/paquettg/php-html-parser/src',
             ),
         ),
+    );
+
+    public static $classMap = array (
+        'AnimeGT\\AnimeGT\\Base\\Videos' => __DIR__ . '/../..' . '/AnimeGT/AnimeGT/Base/Videos.php',
+        'AnimeGT\\AnimeGT\\Base\\VideosQuery' => __DIR__ . '/../..' . '/AnimeGT/AnimeGT/Base/VideosQuery.php',
+        'AnimeGT\\AnimeGT\\Map\\VideosTableMap' => __DIR__ . '/../..' . '/AnimeGT/AnimeGT/Map/VideosTableMap.php',
+        'AnimeGT\\AnimeGT\\Videos' => __DIR__ . '/../..' . '/AnimeGT/AnimeGT/Videos.php',
+        'AnimeGT\\AnimeGT\\VideosQuery' => __DIR__ . '/../..' . '/AnimeGT/AnimeGT/VideosQuery.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
@@ -159,6 +167,7 @@ class ComposerStaticInit99480cef6474b1c82f5968bd42177c50
             $loader->prefixLengthsPsr4 = ComposerStaticInit99480cef6474b1c82f5968bd42177c50::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit99480cef6474b1c82f5968bd42177c50::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit99480cef6474b1c82f5968bd42177c50::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit99480cef6474b1c82f5968bd42177c50::$classMap;
 
         }, null, ClassLoader::class);
     }

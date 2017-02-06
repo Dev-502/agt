@@ -6,4 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AnimeGT\\AnimeGT\\Base\\Videos' => $baseDir . '/AnimeGT/AnimeGT/Base/Videos.php',
+    'AnimeGT\\AnimeGT\\Base\\VideosQuery' => $baseDir . '/AnimeGT/AnimeGT/Base/VideosQuery.php',
+    'AnimeGT\\AnimeGT\\Map\\VideosTableMap' => $baseDir . '/AnimeGT/AnimeGT/Map/VideosTableMap.php',
+    'AnimeGT\\AnimeGT\\Videos' => $baseDir . '/AnimeGT/AnimeGT/Videos.php',
+    'AnimeGT\\AnimeGT\\VideosQuery' => $baseDir . '/AnimeGT/AnimeGT/VideosQuery.php',
 );

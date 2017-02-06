@@ -15,5 +15,13 @@
         "paquettg/php-html-parser": "^1.7",
         "imangazaliev/didom": "^1.8",
 	"propel/propel": "~2.0@dev"
-    }
+  },
+  "autoload": {
+    "classmap": [
+        "AnimeGT/AnimeGT/",
+        "AnimeGT/AnimeGT/Base/",
+        "AnimeGT/AnimeGT/Map/"
+    ]
+}
+
 }

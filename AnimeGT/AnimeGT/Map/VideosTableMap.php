@@ -92,24 +92,24 @@ class VideosTableMap extends TableMap
     const COL_EPISODE = 'videos.episode';
 
     /**
-     * the column name for the 360 field
+     * the column name for the q360 field
      */
-    const COL_360 = 'videos.360';
+    const COL_Q360 = 'videos.q360';
 
     /**
-     * the column name for the 480 field
+     * the column name for the q480 field
      */
-    const COL_480 = 'videos.480';
+    const COL_Q480 = 'videos.q480';
 
     /**
-     * the column name for the 720 field
+     * the column name for the q720 field
      */
-    const COL_720 = 'videos.720';
+    const COL_Q720 = 'videos.q720';
 
     /**
-     * the column name for the 1080 field
+     * the column name for the q1080 field
      */
-    const COL_1080 = 'videos.1080';
+    const COL_Q1080 = 'videos.q1080';
 
     /**
      * The default string format for model objects of the related table
@@ -123,10 +123,10 @@ class VideosTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Id', 'Eid', 'Url', 'Episode', '360', '480', '720', '1080', ),
-        self::TYPE_CAMELNAME     => array('id', 'eid', 'url', 'episode', '360', '480', '720', '1080', ),
-        self::TYPE_COLNAME       => array(VideosTableMap::COL_ID, VideosTableMap::COL_EID, VideosTableMap::COL_URL, VideosTableMap::COL_EPISODE, VideosTableMap::COL_360, VideosTableMap::COL_480, VideosTableMap::COL_720, VideosTableMap::COL_1080, ),
-        self::TYPE_FIELDNAME     => array('id', 'eid', 'url', 'episode', '360', '480', '720', '1080', ),
+        self::TYPE_PHPNAME       => array('Id', 'Eid', 'Url', 'Episode', 'Q360', 'Q480', 'Q720', 'Q1080', ),
+        self::TYPE_CAMELNAME     => array('id', 'eid', 'url', 'episode', 'q360', 'q480', 'q720', 'q1080', ),
+        self::TYPE_COLNAME       => array(VideosTableMap::COL_ID, VideosTableMap::COL_EID, VideosTableMap::COL_URL, VideosTableMap::COL_EPISODE, VideosTableMap::COL_Q360, VideosTableMap::COL_Q480, VideosTableMap::COL_Q720, VideosTableMap::COL_Q1080, ),
+        self::TYPE_FIELDNAME     => array('id', 'eid', 'url', 'episode', 'q360', 'q480', 'q720', 'q1080', ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
@@ -137,10 +137,10 @@ class VideosTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Id' => 0, 'Eid' => 1, 'Url' => 2, 'Episode' => 3, '360' => 4, '480' => 5, '720' => 6, '1080' => 7, ),
-        self::TYPE_CAMELNAME     => array('id' => 0, 'eid' => 1, 'url' => 2, 'episode' => 3, '360' => 4, '480' => 5, '720' => 6, '1080' => 7, ),
-        self::TYPE_COLNAME       => array(VideosTableMap::COL_ID => 0, VideosTableMap::COL_EID => 1, VideosTableMap::COL_URL => 2, VideosTableMap::COL_EPISODE => 3, VideosTableMap::COL_360 => 4, VideosTableMap::COL_480 => 5, VideosTableMap::COL_720 => 6, VideosTableMap::COL_1080 => 7, ),
-        self::TYPE_FIELDNAME     => array('id' => 0, 'eid' => 1, 'url' => 2, 'episode' => 3, '360' => 4, '480' => 5, '720' => 6, '1080' => 7, ),
+        self::TYPE_PHPNAME       => array('Id' => 0, 'Eid' => 1, 'Url' => 2, 'Episode' => 3, 'Q360' => 4, 'Q480' => 5, 'Q720' => 6, 'Q1080' => 7, ),
+        self::TYPE_CAMELNAME     => array('id' => 0, 'eid' => 1, 'url' => 2, 'episode' => 3, 'q360' => 4, 'q480' => 5, 'q720' => 6, 'q1080' => 7, ),
+        self::TYPE_COLNAME       => array(VideosTableMap::COL_ID => 0, VideosTableMap::COL_EID => 1, VideosTableMap::COL_URL => 2, VideosTableMap::COL_EPISODE => 3, VideosTableMap::COL_Q360 => 4, VideosTableMap::COL_Q480 => 5, VideosTableMap::COL_Q720 => 6, VideosTableMap::COL_Q1080 => 7, ),
+        self::TYPE_FIELDNAME     => array('id' => 0, 'eid' => 1, 'url' => 2, 'episode' => 3, 'q360' => 4, 'q480' => 5, 'q720' => 6, 'q1080' => 7, ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
@@ -165,10 +165,10 @@ class VideosTableMap extends TableMap
         $this->addColumn('eid', 'Eid', 'VARCHAR', true, 50, null);
         $this->addColumn('url', 'Url', 'VARCHAR', true, 200, null);
         $this->addColumn('episode', 'Episode', 'VARCHAR', true, 100, null);
-        $this->addColumn('360', '360', 'LONGVARCHAR', true, null, null);
-        $this->addColumn('480', '480', 'LONGVARCHAR', true, null, null);
-        $this->addColumn('720', '720', 'LONGVARCHAR', true, null, null);
-        $this->addColumn('1080', '1080', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('q360', 'Q360', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('q480', 'Q480', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('q720', 'Q720', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('q1080', 'Q1080', 'LONGVARCHAR', true, null, null);
     } // initialize()
 
     /**
@@ -323,19 +323,19 @@ class VideosTableMap extends TableMap
             $criteria->addSelectColumn(VideosTableMap::COL_EID);
             $criteria->addSelectColumn(VideosTableMap::COL_URL);
             $criteria->addSelectColumn(VideosTableMap::COL_EPISODE);
-            $criteria->addSelectColumn(VideosTableMap::COL_360);
-            $criteria->addSelectColumn(VideosTableMap::COL_480);
-            $criteria->addSelectColumn(VideosTableMap::COL_720);
-            $criteria->addSelectColumn(VideosTableMap::COL_1080);
+            $criteria->addSelectColumn(VideosTableMap::COL_Q360);
+            $criteria->addSelectColumn(VideosTableMap::COL_Q480);
+            $criteria->addSelectColumn(VideosTableMap::COL_Q720);
+            $criteria->addSelectColumn(VideosTableMap::COL_Q1080);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.eid');
             $criteria->addSelectColumn($alias . '.url');
             $criteria->addSelectColumn($alias . '.episode');
-            $criteria->addSelectColumn($alias . '.360');
-            $criteria->addSelectColumn($alias . '.480');
-            $criteria->addSelectColumn($alias . '.720');
-            $criteria->addSelectColumn($alias . '.1080');
+            $criteria->addSelectColumn($alias . '.q360');
+            $criteria->addSelectColumn($alias . '.q480');
+            $criteria->addSelectColumn($alias . '.q720');
+            $criteria->addSelectColumn($alias . '.q1080');
         }
     }
 

@@ -5,10 +5,10 @@
     <column name="eid" phpName="Eid" type="VARCHAR" size="50" required="true"/>
     <column name="url" phpName="Url" type="VARCHAR" size="200" required="true"/>
     <column name="episode" phpName="Episode" type="VARCHAR" size="100" required="true"/>
-    <column name="360" phpName="360" type="LONGVARCHAR" required="true"/>
-    <column name="480" phpName="480" type="LONGVARCHAR" required="true"/>
-    <column name="720" phpName="720" type="LONGVARCHAR" required="true"/>
-    <column name="1080" phpName="1080" type="LONGVARCHAR" required="true"/>
+    <column name="q360" phpName="Q360" type="LONGVARCHAR" required="true"/>
+    <column name="q480" phpName="Q480" type="LONGVARCHAR" required="true"/>
+    <column name="q720" phpName="Q720" type="LONGVARCHAR" required="true"/>
+    <column name="q1080" phpName="Q1080" type="LONGVARCHAR" required="true"/>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>

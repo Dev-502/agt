@@ -23,19 +23,19 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildVideosQuery orderByEid($order = Criteria::ASC) Order by the eid column
  * @method     ChildVideosQuery orderByUrl($order = Criteria::ASC) Order by the url column
  * @method     ChildVideosQuery orderByEpisode($order = Criteria::ASC) Order by the episode column
- * @method     ChildVideosQuery orderBy360($order = Criteria::ASC) Order by the 360 column
- * @method     ChildVideosQuery orderBy480($order = Criteria::ASC) Order by the 480 column
- * @method     ChildVideosQuery orderBy720($order = Criteria::ASC) Order by the 720 column
- * @method     ChildVideosQuery orderBy1080($order = Criteria::ASC) Order by the 1080 column
+ * @method     ChildVideosQuery orderByQ360($order = Criteria::ASC) Order by the q360 column
+ * @method     ChildVideosQuery orderByQ480($order = Criteria::ASC) Order by the q480 column
+ * @method     ChildVideosQuery orderByQ720($order = Criteria::ASC) Order by the q720 column
+ * @method     ChildVideosQuery orderByQ1080($order = Criteria::ASC) Order by the q1080 column
  *
  * @method     ChildVideosQuery groupById() Group by the id column
  * @method     ChildVideosQuery groupByEid() Group by the eid column
  * @method     ChildVideosQuery groupByUrl() Group by the url column
  * @method     ChildVideosQuery groupByEpisode() Group by the episode column
- * @method     ChildVideosQuery groupBy360() Group by the 360 column
- * @method     ChildVideosQuery groupBy480() Group by the 480 column
- * @method     ChildVideosQuery groupBy720() Group by the 720 column
- * @method     ChildVideosQuery groupBy1080() Group by the 1080 column
+ * @method     ChildVideosQuery groupByQ360() Group by the q360 column
+ * @method     ChildVideosQuery groupByQ480() Group by the q480 column
+ * @method     ChildVideosQuery groupByQ720() Group by the q720 column
+ * @method     ChildVideosQuery groupByQ1080() Group by the q1080 column
  *
  * @method     ChildVideosQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildVideosQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -52,10 +52,10 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildVideos findOneByEid(string $eid) Return the first ChildVideos filtered by the eid column
  * @method     ChildVideos findOneByUrl(string $url) Return the first ChildVideos filtered by the url column
  * @method     ChildVideos findOneByEpisode(string $episode) Return the first ChildVideos filtered by the episode column
- * @method     ChildVideos findOneBy360(string $360) Return the first ChildVideos filtered by the 360 column
- * @method     ChildVideos findOneBy480(string $480) Return the first ChildVideos filtered by the 480 column
- * @method     ChildVideos findOneBy720(string $720) Return the first ChildVideos filtered by the 720 column
- * @method     ChildVideos findOneBy1080(string $1080) Return the first ChildVideos filtered by the 1080 column *
+ * @method     ChildVideos findOneByQ360(string $q360) Return the first ChildVideos filtered by the q360 column
+ * @method     ChildVideos findOneByQ480(string $q480) Return the first ChildVideos filtered by the q480 column
+ * @method     ChildVideos findOneByQ720(string $q720) Return the first ChildVideos filtered by the q720 column
+ * @method     ChildVideos findOneByQ1080(string $q1080) Return the first ChildVideos filtered by the q1080 column *
 
  * @method     ChildVideos requirePk($key, ConnectionInterface $con = null) Return the ChildVideos by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildVideos requireOne(ConnectionInterface $con = null) Return the first ChildVideos matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -64,20 +64,20 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildVideos requireOneByEid(string $eid) Return the first ChildVideos filtered by the eid column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildVideos requireOneByUrl(string $url) Return the first ChildVideos filtered by the url column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildVideos requireOneByEpisode(string $episode) Return the first ChildVideos filtered by the episode column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildVideos requireOneBy360(string $360) Return the first ChildVideos filtered by the 360 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildVideos requireOneBy480(string $480) Return the first ChildVideos filtered by the 480 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildVideos requireOneBy720(string $720) Return the first ChildVideos filtered by the 720 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildVideos requireOneBy1080(string $1080) Return the first ChildVideos filtered by the 1080 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildVideos requireOneByQ360(string $q360) Return the first ChildVideos filtered by the q360 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildVideos requireOneByQ480(string $q480) Return the first ChildVideos filtered by the q480 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildVideos requireOneByQ720(string $q720) Return the first ChildVideos filtered by the q720 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildVideos requireOneByQ1080(string $q1080) Return the first ChildVideos filtered by the q1080 column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildVideos[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildVideos objects based on current ModelCriteria
  * @method     ChildVideos[]|ObjectCollection findById(int $id) Return ChildVideos objects filtered by the id column
  * @method     ChildVideos[]|ObjectCollection findByEid(string $eid) Return ChildVideos objects filtered by the eid column
  * @method     ChildVideos[]|ObjectCollection findByUrl(string $url) Return ChildVideos objects filtered by the url column
  * @method     ChildVideos[]|ObjectCollection findByEpisode(string $episode) Return ChildVideos objects filtered by the episode column
- * @method     ChildVideos[]|ObjectCollection findBy360(string $360) Return ChildVideos objects filtered by the 360 column
- * @method     ChildVideos[]|ObjectCollection findBy480(string $480) Return ChildVideos objects filtered by the 480 column
- * @method     ChildVideos[]|ObjectCollection findBy720(string $720) Return ChildVideos objects filtered by the 720 column
- * @method     ChildVideos[]|ObjectCollection findBy1080(string $1080) Return ChildVideos objects filtered by the 1080 column
+ * @method     ChildVideos[]|ObjectCollection findByQ360(string $q360) Return ChildVideos objects filtered by the q360 column
+ * @method     ChildVideos[]|ObjectCollection findByQ480(string $q480) Return ChildVideos objects filtered by the q480 column
+ * @method     ChildVideos[]|ObjectCollection findByQ720(string $q720) Return ChildVideos objects filtered by the q720 column
+ * @method     ChildVideos[]|ObjectCollection findByQ1080(string $q1080) Return ChildVideos objects filtered by the q1080 column
  * @method     ChildVideos[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -176,7 +176,7 @@ abstract class VideosQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT id, eid, url, episode, 360, 480, 720, 1080 FROM videos WHERE id = :p0';
+        $sql = 'SELECT id, eid, url, episode, q360, q480, q720, q1080 FROM videos WHERE id = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -383,103 +383,103 @@ abstract class VideosQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the 360 column
+     * Filter the query on the q360 column
      *
      * Example usage:
      * <code>
-     * $query->filterBy360('fooValue');   // WHERE 360 = 'fooValue'
-     * $query->filterBy360('%fooValue%', Criteria::LIKE); // WHERE 360 LIKE '%fooValue%'
+     * $query->filterByQ360('fooValue');   // WHERE q360 = 'fooValue'
+     * $query->filterByQ360('%fooValue%', Criteria::LIKE); // WHERE q360 LIKE '%fooValue%'
      * </code>
      *
-     * @param     string $360 The value to use as filter.
+     * @param     string $q360 The value to use as filter.
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildVideosQuery The current query, for fluid interface
      */
-    public function filterBy360($360 = null, $comparison = null)
+    public function filterByQ360($q360 = null, $comparison = null)
     {
         if (null === $comparison) {
-            if (is_array($360)) {
+            if (is_array($q360)) {
                 $comparison = Criteria::IN;
             }
         }
 
-        return $this->addUsingAlias(VideosTableMap::COL_360, $360, $comparison);
+        return $this->addUsingAlias(VideosTableMap::COL_Q360, $q360, $comparison);
     }
 
     /**
-     * Filter the query on the 480 column
+     * Filter the query on the q480 column
      *
      * Example usage:
      * <code>
-     * $query->filterBy480('fooValue');   // WHERE 480 = 'fooValue'
-     * $query->filterBy480('%fooValue%', Criteria::LIKE); // WHERE 480 LIKE '%fooValue%'
+     * $query->filterByQ480('fooValue');   // WHERE q480 = 'fooValue'
+     * $query->filterByQ480('%fooValue%', Criteria::LIKE); // WHERE q480 LIKE '%fooValue%'
      * </code>
      *
-     * @param     string $480 The value to use as filter.
+     * @param     string $q480 The value to use as filter.
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildVideosQuery The current query, for fluid interface
      */
-    public function filterBy480($480 = null, $comparison = null)
+    public function filterByQ480($q480 = null, $comparison = null)
     {
         if (null === $comparison) {
-            if (is_array($480)) {
+            if (is_array($q480)) {
                 $comparison = Criteria::IN;
             }
         }
 
-        return $this->addUsingAlias(VideosTableMap::COL_480, $480, $comparison);
+        return $this->addUsingAlias(VideosTableMap::COL_Q480, $q480, $comparison);
     }
 
     /**
-     * Filter the query on the 720 column
+     * Filter the query on the q720 column
      *
      * Example usage:
      * <code>
-     * $query->filterBy720('fooValue');   // WHERE 720 = 'fooValue'
-     * $query->filterBy720('%fooValue%', Criteria::LIKE); // WHERE 720 LIKE '%fooValue%'
+     * $query->filterByQ720('fooValue');   // WHERE q720 = 'fooValue'
+     * $query->filterByQ720('%fooValue%', Criteria::LIKE); // WHERE q720 LIKE '%fooValue%'
      * </code>
      *
-     * @param     string $720 The value to use as filter.
+     * @param     string $q720 The value to use as filter.
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildVideosQuery The current query, for fluid interface
      */
-    public function filterBy720($720 = null, $comparison = null)
+    public function filterByQ720($q720 = null, $comparison = null)
     {
         if (null === $comparison) {
-            if (is_array($720)) {
+            if (is_array($q720)) {
                 $comparison = Criteria::IN;
             }
         }
 
-        return $this->addUsingAlias(VideosTableMap::COL_720, $720, $comparison);
+        return $this->addUsingAlias(VideosTableMap::COL_Q720, $q720, $comparison);
     }
 
     /**
-     * Filter the query on the 1080 column
+     * Filter the query on the q1080 column
      *
      * Example usage:
      * <code>
-     * $query->filterBy1080('fooValue');   // WHERE 1080 = 'fooValue'
-     * $query->filterBy1080('%fooValue%', Criteria::LIKE); // WHERE 1080 LIKE '%fooValue%'
+     * $query->filterByQ1080('fooValue');   // WHERE q1080 = 'fooValue'
+     * $query->filterByQ1080('%fooValue%', Criteria::LIKE); // WHERE q1080 LIKE '%fooValue%'
      * </code>
      *
-     * @param     string $1080 The value to use as filter.
+     * @param     string $q1080 The value to use as filter.
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildVideosQuery The current query, for fluid interface
      */
-    public function filterBy1080($1080 = null, $comparison = null)
+    public function filterByQ1080($q1080 = null, $comparison = null)
     {
         if (null === $comparison) {
-            if (is_array($1080)) {
+            if (is_array($q1080)) {
                 $comparison = Criteria::IN;
             }
         }
 
-        return $this->addUsingAlias(VideosTableMap::COL_1080, $1080, $comparison);
+        return $this->addUsingAlias(VideosTableMap::COL_Q1080, $q1080, $comparison);
     }
 
     /**

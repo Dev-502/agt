@@ -88,32 +88,32 @@ abstract class Videos implements ActiveRecordInterface
     protected $episode;
 
     /**
-     * The value for the 360 field.
+     * The value for the q360 field.
      *
      * @var        string
      */
-    protected $360;
+    protected $q360;
 
     /**
-     * The value for the 480 field.
+     * The value for the q480 field.
      *
      * @var        string
      */
-    protected $480;
+    protected $q480;
 
     /**
-     * The value for the 720 field.
+     * The value for the q720 field.
      *
      * @var        string
      */
-    protected $720;
+    protected $q720;
 
     /**
-     * The value for the 1080 field.
+     * The value for the q1080 field.
      *
      * @var        string
      */
-    protected $1080;
+    protected $q1080;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -389,43 +389,43 @@ abstract class Videos implements ActiveRecordInterface
     }
 
     /**
-     * Get the [360] column value.
+     * Get the [q360] column value.
      *
      * @return string
      */
-    public function get360()
+    public function getQ360()
     {
-        return $this->360;
+        return $this->q360;
     }
 
     /**
-     * Get the [480] column value.
+     * Get the [q480] column value.
      *
      * @return string
      */
-    public function get480()
+    public function getQ480()
     {
-        return $this->480;
+        return $this->q480;
     }
 
     /**
-     * Get the [720] column value.
+     * Get the [q720] column value.
      *
      * @return string
      */
-    public function get720()
+    public function getQ720()
     {
-        return $this->720;
+        return $this->q720;
     }
 
     /**
-     * Get the [1080] column value.
+     * Get the [q1080] column value.
      *
      * @return string
      */
-    public function get1080()
+    public function getQ1080()
     {
-        return $this->1080;
+        return $this->q1080;
     }
 
     /**
@@ -509,84 +509,84 @@ abstract class Videos implements ActiveRecordInterface
     } // setEpisode()
 
     /**
-     * Set the value of [360] column.
+     * Set the value of [q360] column.
      *
      * @param string $v new value
      * @return $this|\AnimeGT\AnimeGT\Videos The current object (for fluent API support)
      */
-    public function set360($v)
+    public function setQ360($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->360 !== $v) {
-            $this->360 = $v;
-            $this->modifiedColumns[VideosTableMap::COL_360] = true;
+        if ($this->q360 !== $v) {
+            $this->q360 = $v;
+            $this->modifiedColumns[VideosTableMap::COL_Q360] = true;
         }
 
         return $this;
-    } // set360()
+    } // setQ360()
 
     /**
-     * Set the value of [480] column.
+     * Set the value of [q480] column.
      *
      * @param string $v new value
      * @return $this|\AnimeGT\AnimeGT\Videos The current object (for fluent API support)
      */
-    public function set480($v)
+    public function setQ480($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->480 !== $v) {
-            $this->480 = $v;
-            $this->modifiedColumns[VideosTableMap::COL_480] = true;
+        if ($this->q480 !== $v) {
+            $this->q480 = $v;
+            $this->modifiedColumns[VideosTableMap::COL_Q480] = true;
         }
 
         return $this;
-    } // set480()
+    } // setQ480()
 
     /**
-     * Set the value of [720] column.
+     * Set the value of [q720] column.
      *
      * @param string $v new value
      * @return $this|\AnimeGT\AnimeGT\Videos The current object (for fluent API support)
      */
-    public function set720($v)
+    public function setQ720($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->720 !== $v) {
-            $this->720 = $v;
-            $this->modifiedColumns[VideosTableMap::COL_720] = true;
+        if ($this->q720 !== $v) {
+            $this->q720 = $v;
+            $this->modifiedColumns[VideosTableMap::COL_Q720] = true;
         }
 
         return $this;
-    } // set720()
+    } // setQ720()
 
     /**
-     * Set the value of [1080] column.
+     * Set the value of [q1080] column.
      *
      * @param string $v new value
      * @return $this|\AnimeGT\AnimeGT\Videos The current object (for fluent API support)
      */
-    public function set1080($v)
+    public function setQ1080($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->1080 !== $v) {
-            $this->1080 = $v;
-            $this->modifiedColumns[VideosTableMap::COL_1080] = true;
+        if ($this->q1080 !== $v) {
+            $this->q1080 = $v;
+            $this->modifiedColumns[VideosTableMap::COL_Q1080] = true;
         }
 
         return $this;
-    } // set1080()
+    } // setQ1080()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -636,17 +636,17 @@ abstract class Videos implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : VideosTableMap::translateFieldName('Episode', TableMap::TYPE_PHPNAME, $indexType)];
             $this->episode = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : VideosTableMap::translateFieldName('360', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->360 = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : VideosTableMap::translateFieldName('Q360', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->q360 = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : VideosTableMap::translateFieldName('480', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->480 = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : VideosTableMap::translateFieldName('Q480', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->q480 = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : VideosTableMap::translateFieldName('720', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->720 = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : VideosTableMap::translateFieldName('Q720', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->q720 = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : VideosTableMap::translateFieldName('1080', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->1080 = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : VideosTableMap::translateFieldName('Q1080', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->q1080 = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -868,17 +868,17 @@ abstract class Videos implements ActiveRecordInterface
         if ($this->isColumnModified(VideosTableMap::COL_EPISODE)) {
             $modifiedColumns[':p' . $index++]  = 'episode';
         }
-        if ($this->isColumnModified(VideosTableMap::COL_360)) {
-            $modifiedColumns[':p' . $index++]  = '360';
+        if ($this->isColumnModified(VideosTableMap::COL_Q360)) {
+            $modifiedColumns[':p' . $index++]  = 'q360';
         }
-        if ($this->isColumnModified(VideosTableMap::COL_480)) {
-            $modifiedColumns[':p' . $index++]  = '480';
+        if ($this->isColumnModified(VideosTableMap::COL_Q480)) {
+            $modifiedColumns[':p' . $index++]  = 'q480';
         }
-        if ($this->isColumnModified(VideosTableMap::COL_720)) {
-            $modifiedColumns[':p' . $index++]  = '720';
+        if ($this->isColumnModified(VideosTableMap::COL_Q720)) {
+            $modifiedColumns[':p' . $index++]  = 'q720';
         }
-        if ($this->isColumnModified(VideosTableMap::COL_1080)) {
-            $modifiedColumns[':p' . $index++]  = '1080';
+        if ($this->isColumnModified(VideosTableMap::COL_Q1080)) {
+            $modifiedColumns[':p' . $index++]  = 'q1080';
         }
 
         $sql = sprintf(
@@ -903,17 +903,17 @@ abstract class Videos implements ActiveRecordInterface
                     case 'episode':
                         $stmt->bindValue($identifier, $this->episode, PDO::PARAM_STR);
                         break;
-                    case '360':
-                        $stmt->bindValue($identifier, $this->360, PDO::PARAM_STR);
+                    case 'q360':
+                        $stmt->bindValue($identifier, $this->q360, PDO::PARAM_STR);
                         break;
-                    case '480':
-                        $stmt->bindValue($identifier, $this->480, PDO::PARAM_STR);
+                    case 'q480':
+                        $stmt->bindValue($identifier, $this->q480, PDO::PARAM_STR);
                         break;
-                    case '720':
-                        $stmt->bindValue($identifier, $this->720, PDO::PARAM_STR);
+                    case 'q720':
+                        $stmt->bindValue($identifier, $this->q720, PDO::PARAM_STR);
                         break;
-                    case '1080':
-                        $stmt->bindValue($identifier, $this->1080, PDO::PARAM_STR);
+                    case 'q1080':
+                        $stmt->bindValue($identifier, $this->q1080, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -990,16 +990,16 @@ abstract class Videos implements ActiveRecordInterface
                 return $this->getEpisode();
                 break;
             case 4:
-                return $this->get360();
+                return $this->getQ360();
                 break;
             case 5:
-                return $this->get480();
+                return $this->getQ480();
                 break;
             case 6:
-                return $this->get720();
+                return $this->getQ720();
                 break;
             case 7:
-                return $this->get1080();
+                return $this->getQ1080();
                 break;
             default:
                 return null;
@@ -1034,10 +1034,10 @@ abstract class Videos implements ActiveRecordInterface
             $keys[1] => $this->getEid(),
             $keys[2] => $this->getUrl(),
             $keys[3] => $this->getEpisode(),
-            $keys[4] => $this->get360(),
-            $keys[5] => $this->get480(),
-            $keys[6] => $this->get720(),
-            $keys[7] => $this->get1080(),
+            $keys[4] => $this->getQ360(),
+            $keys[5] => $this->getQ480(),
+            $keys[6] => $this->getQ720(),
+            $keys[7] => $this->getQ1080(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1090,16 +1090,16 @@ abstract class Videos implements ActiveRecordInterface
                 $this->setEpisode($value);
                 break;
             case 4:
-                $this->set360($value);
+                $this->setQ360($value);
                 break;
             case 5:
-                $this->set480($value);
+                $this->setQ480($value);
                 break;
             case 6:
-                $this->set720($value);
+                $this->setQ720($value);
                 break;
             case 7:
-                $this->set1080($value);
+                $this->setQ1080($value);
                 break;
         } // switch()
 
@@ -1140,16 +1140,16 @@ abstract class Videos implements ActiveRecordInterface
             $this->setEpisode($arr[$keys[3]]);
         }
         if (array_key_exists($keys[4], $arr)) {
-            $this->set360($arr[$keys[4]]);
+            $this->setQ360($arr[$keys[4]]);
         }
         if (array_key_exists($keys[5], $arr)) {
-            $this->set480($arr[$keys[5]]);
+            $this->setQ480($arr[$keys[5]]);
         }
         if (array_key_exists($keys[6], $arr)) {
-            $this->set720($arr[$keys[6]]);
+            $this->setQ720($arr[$keys[6]]);
         }
         if (array_key_exists($keys[7], $arr)) {
-            $this->set1080($arr[$keys[7]]);
+            $this->setQ1080($arr[$keys[7]]);
         }
     }
 
@@ -1204,17 +1204,17 @@ abstract class Videos implements ActiveRecordInterface
         if ($this->isColumnModified(VideosTableMap::COL_EPISODE)) {
             $criteria->add(VideosTableMap::COL_EPISODE, $this->episode);
         }
-        if ($this->isColumnModified(VideosTableMap::COL_360)) {
-            $criteria->add(VideosTableMap::COL_360, $this->360);
+        if ($this->isColumnModified(VideosTableMap::COL_Q360)) {
+            $criteria->add(VideosTableMap::COL_Q360, $this->q360);
         }
-        if ($this->isColumnModified(VideosTableMap::COL_480)) {
-            $criteria->add(VideosTableMap::COL_480, $this->480);
+        if ($this->isColumnModified(VideosTableMap::COL_Q480)) {
+            $criteria->add(VideosTableMap::COL_Q480, $this->q480);
         }
-        if ($this->isColumnModified(VideosTableMap::COL_720)) {
-            $criteria->add(VideosTableMap::COL_720, $this->720);
+        if ($this->isColumnModified(VideosTableMap::COL_Q720)) {
+            $criteria->add(VideosTableMap::COL_Q720, $this->q720);
         }
-        if ($this->isColumnModified(VideosTableMap::COL_1080)) {
-            $criteria->add(VideosTableMap::COL_1080, $this->1080);
+        if ($this->isColumnModified(VideosTableMap::COL_Q1080)) {
+            $criteria->add(VideosTableMap::COL_Q1080, $this->q1080);
         }
 
         return $criteria;
@@ -1305,10 +1305,10 @@ abstract class Videos implements ActiveRecordInterface
         $copyObj->setEid($this->getEid());
         $copyObj->setUrl($this->getUrl());
         $copyObj->setEpisode($this->getEpisode());
-        $copyObj->set360($this->get360());
-        $copyObj->set480($this->get480());
-        $copyObj->set720($this->get720());
-        $copyObj->set1080($this->get1080());
+        $copyObj->setQ360($this->getQ360());
+        $copyObj->setQ480($this->getQ480());
+        $copyObj->setQ720($this->getQ720());
+        $copyObj->setQ1080($this->getQ1080());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1348,10 +1348,10 @@ abstract class Videos implements ActiveRecordInterface
         $this->eid = null;
         $this->url = null;
         $this->episode = null;
-        $this->360 = null;
-        $this->480 = null;
-        $this->720 = null;
-        $this->1080 = null;
+        $this->q360 = null;
+        $this->q480 = null;
+        $this->q720 = null;
+        $this->q1080 = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
