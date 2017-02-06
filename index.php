@@ -3,7 +3,7 @@
 
 //show error_get_last
 //http://stackoverflow.com/questions/18382740/cors-not-working-php
- header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: *");
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Max-Age: 86400');    // cache for 1 day
 
@@ -26,7 +26,7 @@ header("Content-Type: application/json");
 require 'vendor/autoload.php';
 
 // setup Propel
-require_once '/generated-conf/config.php';
+//require_once '/generated-conf/config.php';
 
 use DiDom\Document;
 
@@ -239,7 +239,7 @@ $app->get('/Anime/{aid}/{aurl}/', function ($request, $response, $args)
 
 $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
 {
-    
+
     $resdata = [];
     $url = "/Ver/".$args['vid']."/".$args['aurl']."/".$args['eurl'];
     $reshtml = getPage($url);
