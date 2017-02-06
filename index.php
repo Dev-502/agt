@@ -239,11 +239,7 @@ $app->get('/Anime/{aid}/{aurl}/', function ($request, $response, $args)
 
 $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
 {
-    $video = new Video();
-    $video->setEid($args['vid']);
-    $video->setUrl($args['aurl']);
-    $video->setEpisode($args['eurl']);
-    $video->save();
+    
     $resdata = [];
     $url = "/Ver/".$args['vid']."/".$args['aurl']."/".$args['eurl'];
     $reshtml = getPage($url);
