@@ -5,7 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/imangazaliev/didom/v/stable)](https://packagist.org/packages/imangazaliev/didom)
 [![License](https://poser.pugx.org/imangazaliev/didom/license)](https://packagist.org/packages/imangazaliev/didom)
 
-[README на английском](README.md)
+[English version](README.md)
 
 DiDOM - простая и быстрая библиотека для парсинга HTML.
 
@@ -157,7 +157,7 @@ if ($document->has('.post')) {
 но быстрее так:
 
 ```php
-if (count($elements = $document->find('.post')) != 0) {
+if (count($elements = $document->find('.post')) > 0) {
     // код
 }
 ```
@@ -219,7 +219,7 @@ $document->find('a.foo::text');
 $document->find('a.bar::attr(href|title)');
 
 // все ссылки, которые являются прямыми потомками текущего элемента
-$document->find('> a');
+$element->find('> a');
 ```
 
 ## Изменение содержимого
@@ -404,6 +404,7 @@ var_dump($item->children());
 
 ```php
 $document = new Document($html);
+
 $element  = $document->first('input[name=email]');
 
 $document2 = $element->getDocument();
@@ -508,12 +509,14 @@ var_dump($element->is($element2));
 $list = new Element('ul');
 
 $item = new Element('li', 'Item 1');
+
+$list->appendChild($item);
+
 $items = [
     new Element('li', 'Item 2'),
     new Element('li', 'Item 3'),
 ];
 
-$list->appendChild($item);
 $list->appendChild($items);
 ```
 
@@ -605,7 +608,7 @@ echo $document->count('a');
 Возвращает `true`, если узел подходит под селектор:
 
 ```php
-$element->matches('div.#content');
+$element->matches('div#content');
 ```
 
 #### `isTextNode`
@@ -614,6 +617,14 @@ $element->matches('div.#content');
 
 ```php
 $element->isTextNode();
+```
+
+#### `isCommentNode`
+
+Проверяет, является ли элемент комментарием (DOMComment):
+
+```php
+$element->isCommentNode();
 ```
 
 ## Сравнение с другими парсерами

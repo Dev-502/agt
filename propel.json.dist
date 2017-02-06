@@ -1,0 +1,8 @@
+{
+    "propel": {
+        "paths": {
+            "schemaDir": "\/home\/lexo\/Documents\/Projects\/AnimeGT\/api",
+            "phpDir": "\/home\/lexo\/Documents\/Projects\/AnimeGT\/api"
+        }
+    }
+}

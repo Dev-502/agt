@@ -71,7 +71,7 @@ class DocumentTest extends TestCase
 
     public function testCreate()
     {
-        $this->assertInstanceOf(Document::class, Document::create());
+        $this->assertInstanceOf('DiDom\Document', Document::create());
     }
 
     public function testCreateElement()
@@ -144,17 +144,29 @@ class DocumentTest extends TestCase
         $this->assertCount(0, $document->find('span'));
 
         $node = $document->createElement('span');
-        $document->appendChild($node);
+        $appendedChild = $document->appendChild($node);
 
         $this->assertCount(1, $document->find('span'));
+        $this->assertTrue($appendedChild->is($document->first('span')));
+
+        $appendedChild->remove();
+
+        $this->assertCount(0, $document->find('span'));
 
         $nodes = [];
         $nodes[] = $document->createElement('span');
         $nodes[] = $document->createElement('span');
 
-        $document->appendChild($nodes);
+        $appendedChildren = $document->appendChild($nodes);
 
-        $this->assertCount(3, $document->find('span'));
+        $nodes = $document->find('span');
+
+        $this->assertCount(2, $appendedChildren);
+        $this->assertCount(2, $nodes);
+
+        foreach ($appendedChildren as $index => $child) {
+            $this->assertTrue($child->is($nodes[$index]));
+        }
     }
 
     /**
@@ -258,8 +270,7 @@ class DocumentTest extends TestCase
 
     public function testHas()
     {
-        $html = $this->loadFixture('posts.html');
-        $document = new Document($html, false);
+        $document = new Document($this->loadFixture('posts.html'));
 
         $this->assertTrue($document->has('.posts'));
         $this->assertFalse($document->has('.fake'));
@@ -270,7 +281,7 @@ class DocumentTest extends TestCase
      */
     public function testFind($html, $selector, $type, $count)
     {
-        $document = new Document($html, false);
+        $document = new Document($html);
         $elements = $document->find($selector, $type);
 
         $this->assertTrue(is_array($elements));
@@ -286,7 +297,7 @@ class DocumentTest extends TestCase
      */
     public function testFindAndReturnDomElement($html, $selector, $type, $count)
     {
-        $document = new Document($html, false);
+        $document = new Document($html);
         $elements = $document->find($selector, $type, false);
 
         $this->assertTrue(is_array($elements));
@@ -297,11 +308,24 @@ class DocumentTest extends TestCase
         }
     }
 
+    public function testFindWithContext()
+    {
+        $document = new Document($this->loadFixture('posts.html'));
+
+        $post = $document->find('.post')[1];
+        $title = $document->find('.post .title')[1];
+
+        $titleInContext = $document->find('.title', Query::TYPE_CSS, true, $post)[0];
+
+        $this->assertTrue($title->is($titleInContext));
+        $this->assertFalse($title->is($post->find('.title')[0]));
+    }
+
     public function testFindText()
     {
         $html = $this->loadFixture('menu.html');
 
-        $document = new Document($html, false);
+        $document = new Document($html);
         $texts = $document->find('//a/text()', Query::TYPE_XPATH);
 
         $this->assertTrue(is_array($texts));
@@ -314,7 +338,7 @@ class DocumentTest extends TestCase
     {
         $html = $this->loadFixture('menu.html');
 
-        $document = new Document($html, false);
+        $document = new Document($html);
         $links = $document->find('//a/@href', Query::TYPE_XPATH);
 
         $this->assertTrue(is_array($links));
@@ -352,6 +376,26 @@ class DocumentTest extends TestCase
         $document = new Document();
 
         $this->assertNull($document->first('ul > li'));
+    }
+
+    public function testFirstWithContext()
+    {
+        $html = '
+            <div class="root">
+                <span>Foo</span>
+
+                <div><span>Bar</span></div>
+            </div>
+        ';
+
+        $document = new Document($html);
+
+        $div = $document->first('.root div');
+        $span = $document->first('.root div span');
+
+        $result = $document->first('span', Query::TYPE_CSS, true, $div);
+
+        $this->assertTrue($span->is($result));
     }
 
     public function testXpath()
@@ -393,7 +437,7 @@ class DocumentTest extends TestCase
     public function testHtmlWithOptions()
     {
         $html = '<html><body><span></span></body></html>';
-        
+
         $document = new Document();
         $document->loadHtml($html);
 
@@ -412,7 +456,7 @@ class DocumentTest extends TestCase
     public function testXmlWithOptions()
     {
         $xml = '<foo><bar></bar></foo>';
-        
+
         $document = new Document();
         $document->loadXml($xml);
 
@@ -486,7 +530,7 @@ class DocumentTest extends TestCase
         $document = new Document($html, false);
         $document2 = new Document();
 
-        $this->assertFalse($document->is($document2));        
+        $this->assertFalse($document->is($document2));
     }
 
     public function testGetDocument()

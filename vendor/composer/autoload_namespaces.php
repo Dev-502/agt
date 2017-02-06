@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'stringEncode' => array($vendorDir . '/paquettg/string-encode/src'),
+    'Propel' => array($vendorDir . '/propel/propel/src'),
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
     'PHPHtmlParser' => array($vendorDir . '/paquettg/php-html-parser/src'),
 );

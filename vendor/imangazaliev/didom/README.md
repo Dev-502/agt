@@ -5,7 +5,7 @@
 [![Latest Stable Version](https://poser.pugx.org/imangazaliev/didom/v/stable)](https://packagist.org/packages/imangazaliev/didom)
 [![License](https://poser.pugx.org/imangazaliev/didom/license)](https://packagist.org/packages/imangazaliev/didom)
 
-[Russian version](README-RU.md)
+[README на русском](README-RU.md)
 
 DiDOM - simple and fast HTML parser.
 
@@ -151,7 +151,7 @@ if ($document->has('.post')) {
 but it would be faster like this:
 
 ```php
-if (count($elements = $document->find('.post')) != 0) {
+if (count($elements = $document->find('.post')) > 0) {
     // code
 }
 ```
@@ -202,7 +202,7 @@ $document->find('a[href*=example.com]');
 // text of the links with "foo" class
 $document->find('a.foo::text');
 
-// address and title af all the fields with "bar" class
+// address and title of all the fields with "bar" class
 $document->find('a.bar::attr(href|title)');
 ```
 
@@ -292,20 +292,23 @@ use DiDom\Element;
 use DOMElement;
 
 $domElement = new DOMElement('span', 'Hello');
-$element    = new Element($domElement);
+
+$element = new Element($domElement);
 ```
 
 ### Using the method `createElement`
 
 ```php
 $document = new Document($html);
-$element  = $document->createElement('span', 'Hello');
+
+$element = $document->createElement('span', 'Hello');
 ```
 
 ## Getting parent element
 
 ```php
 $document = new Document($html);
+
 $input = $document->find('input[name=email]')[0];
 
 var_dump($input->parent());
@@ -315,6 +318,7 @@ var_dump($input->parent());
 
 ```php
 $document = new Document($html);
+
 $item = $document->find('ul.menu > li')[1];
 
 var_dump($item->previousSibling());
@@ -353,7 +357,8 @@ var_dump($item->children());
 
 ```php
 $document = new Document($html);
-$element  = $document->find('input[name=email]')[0];
+
+$element = $document->find('input[name=email]')[0];
 
 $document2 = $element->getDocument();
 
@@ -451,12 +456,14 @@ var_dump($element->is($element2));
 $list = new Element('ul');
 
 $item = new Element('li', 'Item 1');
+
+$list->appendChild($item);
+
 $items = [
     new Element('li', 'Item 2'),
     new Element('li', 'Item 3'),
 ];
 
-$list->appendChild($item);
 $list->appendChild($items);
 ```
 

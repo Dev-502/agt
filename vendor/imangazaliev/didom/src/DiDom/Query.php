@@ -131,6 +131,8 @@ class Query
      * @param array  $args
      * 
      * @return string
+     * 
+     * @throws RuntimeException if the passed property is unknown
      */
     protected static function convertProperty($name, $args = [])
     {
@@ -310,7 +312,7 @@ class Query
                 break;
         }
 
-        throw new RuntimeException('Invalid selector: unknown pseudo-class');
+        throw new RuntimeException(sprintf('Invalid selector: unknown pseudo-class "%s"', $pseudo));
     }
 
     /**

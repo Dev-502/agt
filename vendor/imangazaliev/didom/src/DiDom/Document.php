@@ -21,11 +21,13 @@ class Document
 
     /**
      * Constructor.
-     * 
+     *
      * @param string $string HTML or XML string or file path
      * @param bool   $isFile Indicates that in first parameter was passed to the file path
      * @param string $encoding The document encoding
      * @param string $type The document type
+     * 
+     * @throws \InvalidArgumentException if the passed encoding is not a string
      */
     public function __construct($string = null, $isFile = false, $encoding = 'UTF-8', $type = 'html')
     {
@@ -113,16 +115,24 @@ class Document
 
     /**
      * Add new child at the end of the children.
-     * 
+     *
      * @param \DiDom\Element|\DOMNode|array $nodes The appended child
      *
-     * @return \DiDom\Document
+     * @return \DiDom\Element|\DiDom\Element[]
      *
-     * @throws \InvalidArgumentException if the provided argument is not an instance of \DOMNode or \DiDom\Element
+     * @throws \InvalidArgumentException if the passed argument is not an instance of \DOMNode or \DiDom\Element
      */
     public function appendChild($nodes)
     {
-        $nodes = is_array($nodes) ? $nodes : [$nodes];
+        $returnArray = true;
+
+        if (!is_array($nodes)) {
+            $nodes = [$nodes];
+
+            $returnArray = false;
+        }
+
+        $result = [];
 
         foreach ($nodes as $node) {
             if ($node instanceof Element) {
@@ -138,19 +148,23 @@ class Document
             $cloned = $node->cloneNode(true);
             $newNode = $this->document->importNode($cloned, true);
 
-            $this->document->appendChild($newNode);
+            $result[] = $this->document->appendChild($newNode);
 
             Errors::restore();
         }
 
-        return $this;
+        $result = array_map(function (\DOMNode $node) {
+            return new Element($node);
+        }, $result);
+
+        return $returnArray ? $result : $result[0];
     }
 
     /**
      * Set preserveWhiteSpace property.
-     * 
+     *
      * @param bool $value
-     * 
+     *
      * @return \DiDom\Document
      */
     public function preserveWhiteSpace($value = true)
@@ -166,7 +180,7 @@ class Document
 
     /**
      * Load HTML or XML.
-     * 
+     *
      * @param string $string HTML or XML string or file path
      * @param bool   $isFile Indicates that in first parameter was passed to the file path
      * @param string $type Type of document
@@ -211,7 +225,7 @@ class Document
 
     /**
      * Load HTML from a string.
-     * 
+     *
      * @param string $html The HTML string
      * @param int    $options Additional parameters
      *
@@ -226,7 +240,7 @@ class Document
 
     /**
      * Load HTML from a file.
-     * 
+     *
      * @param string $filepath The path to the HTML file
      * @param int    $options Additional parameters
      *
@@ -243,7 +257,7 @@ class Document
 
     /**
      * Load XML from a string.
-     * 
+     *
      * @param string $xml The XML string
      * @param int    $options Additional parameters
      *
@@ -258,7 +272,7 @@ class Document
 
     /**
      * Load XML from a file.
-     * 
+     *
      * @param string $filepath The path to the XML file
      * @param int    $options Additional parameters
      *
@@ -275,7 +289,7 @@ class Document
 
     /**
      * Reads entire file into a string.
-     * 
+     *
      * @param string $filepath The path to the file
      *
      * @return strting
@@ -307,7 +321,7 @@ class Document
 
     /**
      * Checks the existence of the node.
-     * 
+     *
      * @param string $expression XPath expression or CSS selector
      * @param string $type The type of the expression
      *
@@ -325,14 +339,15 @@ class Document
 
     /**
      * Searches for an node in the DOM tree for a given XPath expression or a CSS selector.
-     * 
+     *
      * @param string $expression XPath expression or a CSS selector
      * @param string $type The type of the expression
      * @param bool   $wrapElement Returns array of \DiDom\Element if true, otherwise array of \DOMElement
+     * @param \DOMElement $contextNode
      *
      * @return \DiDom\Element[]|\DOMElement[]
      */
-    public function find($expression, $type = Query::TYPE_CSS, $wrapElement = true)
+    public function find($expression, $type = Query::TYPE_CSS, $wrapElement = true, $contextNode = null)
     {
         $expression = Query::compile($expression, $type);
 
@@ -341,7 +356,21 @@ class Document
         $xpath->registerNamespace("php", "http://php.net/xpath");
         $xpath->registerPhpFunctions();
 
-        $nodeList = $xpath->query($expression);
+        if ($contextNode !== null) {
+            if ($contextNode instanceof Element) {
+                $contextNode = $contextNode->getNode();
+            }
+
+            if (!$contextNode instanceof \DOMElement) {
+                throw new InvalidArgumentException(sprintf('Argument 4 passed to %s must be an instance of %s\Element or DOMElement, %s given', __METHOD__, __NAMESPACE__, (is_object($contextNode) ? get_class($contextNode) : gettype($contextNode))));
+            }
+
+            if ($type === Query::TYPE_CSS) {
+                $expression = '.'.$expression;
+            }
+        }
+
+        $nodeList = $xpath->query($expression, $contextNode);
 
         $result = [];
 
@@ -360,16 +389,25 @@ class Document
 
     /**
      * Searches for an node in the DOM tree and returns first element or null.
-     * 
+     *
      * @param string $expression XPath expression or a CSS selector
      * @param string $type The type of the expression
      * @param bool   $wrapElement Returns \DiDom\Element if true, otherwise \DOMElement
+     * @param \DOMElement $contextNode
      *
      * @return \DiDom\Element|\DOMElement|null
      */
-    public function first($expression, $type = Query::TYPE_CSS, $wrapElement = true)
+    public function first($expression, $type = Query::TYPE_CSS, $wrapElement = true, $contextNode = null)
     {
-        $nodes = $this->find($expression, $type, false);
+        $expression = Query::compile($expression, $type);
+
+        if ($contextNode !== null and $type === Query::TYPE_CSS) {
+            $expression = '.'.$expression;
+        }
+
+        $expression = sprintf('(%s)[1]', $expression);
+
+        $nodes = $this->find($expression, Query::TYPE_XPATH, false, $contextNode);
 
         if (count($nodes) === 0) {
             return null;
@@ -396,20 +434,21 @@ class Document
 
     /**
      * Searches for an node in the DOM tree for a given XPath expression.
-     * 
+     *
      * @param string $expression XPath expression
      * @param bool   $wrapElement Returns array of \DiDom\Element if true, otherwise array of \DOMElement
+     * @param \DOMElement $contextNode
      *
      * @return \DiDom\Element[]|\DOMElement[]
      */
-    public function xpath($expression, $wrapElement = true)
+    public function xpath($expression, $wrapElement = true, $contextNode = null)
     {
-        return $this->find($expression, Query::TYPE_XPATH, $wrapElement);
+        return $this->find($expression, Query::TYPE_XPATH, $wrapElement, $contextNode);
     }
 
     /**
      * Counts nodes for a given XPath expression or a CSS selector.
-     * 
+     *
      * @param string $expression XPath expression or CSS selector
      * @param string $type The type of the expression
      *
@@ -427,9 +466,9 @@ class Document
 
     /**
      * Dumps the internal document into a string using HTML formatting.
-     * 
+     *
      * @param int $options Additional options
-     * 
+     *
      * @return string The document html
      */
     public function html($options = LIBXML_NOEMPTYTAG)
@@ -439,9 +478,9 @@ class Document
 
     /**
      * Dumps the internal document into a string using XML formatting.
-     * 
+     *
      * @param int $options Additional options
-     * 
+     *
      * @return string The document xml
      */
     public function xml($options = 0)
@@ -451,7 +490,7 @@ class Document
 
     /**
      * Nicely formats output with indentation and extra space.
-     * 
+     *
      * @param bool $format Formats output if true
      *
      * @return \DiDom\Document
@@ -469,7 +508,7 @@ class Document
 
     /**
      * Get the text content of this node and its descendants.
-     * 
+     *
      * @return string
      */
     public function text()
@@ -479,7 +518,7 @@ class Document
 
     /**
      * Indicates if two documents are the same document.
-     * 
+     *
      * @param Document|\DOMDocument $document The compared document
      *
      * @return bool
@@ -507,7 +546,7 @@ class Document
 
     /**
      * Returns the type of document (XML or HTML).
-     * 
+     *
      * @return string
      */
     public function getType()
@@ -545,7 +584,7 @@ class Document
 
     /**
      * Convert the document to its string representation.
-     * 
+     *
      * @return string
      */
     public function __toString()
@@ -555,7 +594,7 @@ class Document
 
     /**
      * Searches for an node in the DOM tree for a given XPath expression or a CSS selector.
-     * 
+     *
      * @param string $expression XPath expression or a CSS selector
      * @param string $type The type of the expression
      * @param bool   $wrapElement Returns array of \DiDom\Element if true, otherwise array of \DOMElement

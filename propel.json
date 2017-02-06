@@ -1,0 +1,17 @@
+{
+    "propel": {
+        "database": {
+            "connections": {
+                "default": {
+                    "adapter": "mysql",
+                    "dsn": "mysql:host=45.32.85.142;port=3306;dbname=admin_anime",
+                    "user": "admin_anime",
+                    "password": "gE4Zkuttmn",
+                    "settings": {
+                        "charset": "utf8"
+                    }
+                }
+            }
+        }
+    }
+}
