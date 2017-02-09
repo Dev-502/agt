@@ -11,6 +11,7 @@ $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
       ->filterByUrl($args['aurl'])
       ->filterByEpisode($args['eurl'])
       ->findOne();
+    $video = null;
     if($video!=null){
       if(!empty($video->getQ1080())){
         $alreadyStored = true;
