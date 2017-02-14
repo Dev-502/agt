@@ -6,26 +6,26 @@ $app->get('/Ver/{vid}/{aurl}/{eurl}/', function ($request, $response, $args)
 {
     $alreadyStored = false;
     $someDataStored = false;
-    //$video = VideosQuery::create()
-    //  ->filterByEid($args['vid'])
-    //  ->filterByUrl($args['aurl'])
-    //  ->filterByEpisode($args['eurl'])
-    //  ->findOne();
-    //$video = null;
-    //if($video!=null){
-    //  if(!empty($video->getQ1080())){
-    //    $alreadyStored = true;
-    //  }
-    //  else{
-    //    $someDataStored = true;
-    //  }
-    //}
-    /*else{
+    $video = VideosQuery::create()
+      ->filterByEid($args['vid'])
+      ->filterByUrl($args['aurl'])
+      ->filterByEpisode($args['eurl'])
+      ->findOne();
+    $video = null;
+    if($video!=null){
+      if(!empty($video->getQ1080())){
+        $alreadyStored = true;
+      }
+      else{
+        $someDataStored = true;
+      }
+    }
+    else{
       $video = new Videos();
       $video->setEid($args['vid']);
       $video->setUrl($args['aurl']);
       $video->setEpisode($args['eurl']);
-    }*/
+    }
     $resdata = [];
     $gvideos = array();
     if(!$alreadyStored){
